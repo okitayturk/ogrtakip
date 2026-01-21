@@ -1,6 +1,4 @@
-
-// Fix: Use namespaced import to resolve potential "no exported member" errors in certain module resolution environments
-import * as firebaseApp from "firebase/app";
+import firebase from "firebase/compat/app";
 import { 
   getFirestore, 
   collection, 
@@ -24,11 +22,8 @@ const firebaseConfig = {
   measurementId: "G-HBGX9W2G81"
 };
 
-// Initialize Firebase using the namespaced app access
-const app = firebaseApp.getApps().length === 0 
-  ? firebaseApp.initializeApp(firebaseConfig) 
-  : firebaseApp.getApp();
-
+// Initialize Firebase
+const app = firebase.apps.length === 0 ? firebase.initializeApp(firebaseConfig) : firebase.app();
 const db = getFirestore(app);
 const COLLECTION_NAME = 'students';
 
